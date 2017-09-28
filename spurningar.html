@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+1. 0.25% Afhverju er getElementById() fljótleglegasta aðferðin?
+Því hún getur fundið element eftir ID og í HTML geta engin tvö elements haft sama nafnið.
+
+2. 0.25% Hvað gerir querySelectorAll()? komdu með kóðasýnidæmi ásamt skýringu.
+querySelectorAll skilar öllum nodes sem eru sóttar eftir ákveðnum css selector.
+function getElements(selectElements) {
+    return document.querySelectorAll(selectElements);
+}
+
+getElements('.alert');
+
+3. 1% Hvað er NodeList? Útskýrðu útfrá eftirfarandi kóðasýnidæmi, útskýrðu línu fyrir línu.
+var elements = document.getElementsByTagName('li'); - Allar niðurstöður úr taginu 'li' sett í var elements en í kjölfarið breytist í array
+if (elements.length > 0) { Ef var element er lengra en 0 þá
+var el = elements[2]; Sóttur annar index í array
+el.className = 'cool'; Breytt klasanafninu í 'cool'
+}
+
+4. 0.25% Hvað gerir getElementByTagName()? Hverju eru skilað? komdu með kóðsýnidæmi.
+Það skilar HTMLCollection af elementum með viðeigandi tag nafni.
+
+var table = document.getElementById("forecast-table"); - Sótt töfluna eftir ID
+var cells = table.getElementsByTagName("td"); - Sótt öll tög með nafninu "td"
+for (var i = 0; i < cells.length; i++) { - Loopað í gegnum var cells
+var status = cells[i].getAttribute("data-status"); - Sótt status með því að loopa í gegnum cells[i].getAttribute();
+if ( status == "open" ) { Ef status attribute'ið er == "open"
+// grab the data
+}
+}
+
+5. 0.25% Hvað er málið með auða hnúta (e. whitespace nodes) og vafra? hvernig leysum við slíkt?
+Whitespace characters í HTML á milli elementa eru taldir sem nodes líka. Í því er innifalið space, newline og tab.
+Dæmi:
+<ul id="x1">
+    <li>A</li>
+    <li>B</li>
+</ul>
+
+console.log(document.getElementById("x1").childNodes.length);
+Þetta skilar 5 því hann telur einnig alla newline karaktera.
+Þetta er leyst með því að nota eitthvað af eftirfarandi;
+
+children
+nextElementSibling
+previousElementSibling
+firstElementChild
+
+
+6. 1% Eftirfarandi er gefið: let elList = document.getElementById('one');
+Notaðu eitthvað af eftirtöldu; parentNode, previousSibling, nextSibling, firstChild, lastChild
+til að velja html elementið sem er feitletrað í kóðanum útfrá elList.
+<ul id="one"
+><li><em>fresh</em>figs</li
+><li>pine nuts</li
+><li>honey</li
+><li>balsamic vinegar</li></ul>
+
+</body>
+</html>
+
+let elList = document.getElementById('one').firstChild;
+console.log(elList);
